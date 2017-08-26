@@ -55,4 +55,8 @@ public class Bonus implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Bonus [cardId=" + cardId + ", value=" + value + "]";
+	}
 }

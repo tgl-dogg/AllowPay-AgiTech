@@ -29,6 +29,20 @@ public class CardRegister implements Serializable{
 	@JoinColumn
 	@ManyToOne
 	private Child child;
+	
+	public CardRegister(){
+		
+	}
+
+	public CardRegister(final String cardId, final BigDecimal balance, final String deviceNotificationDadId,
+			final String deviceNotificationChildId, final Child child) {
+		super();
+		this.cardId = cardId;
+		this.balance = balance;
+		this.deviceNotificationDadId = deviceNotificationDadId;
+		this.deviceNotificationChildId = deviceNotificationChildId;
+		this.child = child;
+	}
 
 	public String getCardId() {
 		return cardId;

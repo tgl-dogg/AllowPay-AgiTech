@@ -1,9 +1,11 @@
 package br.com.allowpay.canonical;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Balance {
+public class Balance implements Serializable{
 
+	private static final long serialVersionUID = 5753924319516788407L;
 	private final String cardId;
 	private final BigDecimal value;
 

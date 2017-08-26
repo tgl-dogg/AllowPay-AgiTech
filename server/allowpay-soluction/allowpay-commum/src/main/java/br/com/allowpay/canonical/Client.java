@@ -1,7 +1,10 @@
 package br.com.allowpay.canonical;
 
-public abstract class Client {
+import java.io.Serializable;
 
+public abstract class Client implements Serializable{
+
+	private static final long serialVersionUID = -2531957748885346524L;
 	private final String name;
 
 	public Client(final String name) {

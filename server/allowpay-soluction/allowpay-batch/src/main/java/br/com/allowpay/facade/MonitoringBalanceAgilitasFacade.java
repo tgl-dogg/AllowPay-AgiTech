@@ -30,13 +30,13 @@ public class MonitoringBalanceAgilitasFacade {
 
 	public void startMonitor() {
 		findCardsIdentification.getCardsIdentification(pageCardRegister -> {
-			pageCardRegister.parallelStream().forEach(cardIdentification -> {
+			pageCardRegister.parallelStream().forEach(balanceAllowPay -> {
 				try {
-					final Balance balance = agilitasBalanceConsumer
-							.getBalanceDiferenceAgilitasAndAllowpay(cardIdentification);
+					final Balance balanceAgilitas = agilitasBalanceConsumer
+							.getBalanceDiferenceAgilitasAndAllowpay(balanceAllowPay);
 
-					if (compareBalanceValue.balanceDiferenceZero(balance.getValue())) {
-						balanceNotificationTopic.publish(balance);
+					if (compareBalanceValue.balanceDiferenceZero(balanceAgilitas.getValue())) {
+						balanceNotificationTopic.publish(balanceAgilitas);
 					}
 				} catch (IntegrationFailException e) {
 					throw new RuntimeException(e);

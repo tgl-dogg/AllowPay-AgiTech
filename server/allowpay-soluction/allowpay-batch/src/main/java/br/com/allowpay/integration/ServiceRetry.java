@@ -8,7 +8,7 @@ import br.com.allowpay.exception.IntegrationFailException;
 @Component
 public class ServiceRetry {
 
-	@Value("${apiGateway.retry}")
+	@Value("${apiGateway.retry:3}")
 	private Integer retry;
 
 	public <I, O> O callWithRetry(final AllowPayApiGatewayServiceRetry allowPayApiGatewayServiceRetry, final I input,

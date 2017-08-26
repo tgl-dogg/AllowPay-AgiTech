@@ -11,22 +11,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Dad implements Serializable{
+public class Dad implements Serializable {
 
 	private static final long serialVersionUID = -8098023336196222875L;
 
 	@Id
 	private String cpf;
-	
+
 	@Column
 	private String fullName;
-	
+
 	@Column
 	private Date createDate;
-	
+
 	@OneToMany
 	@JoinColumn
 	private List<Child> childs;
+
+	public Dad() {
+
+	}
+
+	public Dad(final String cpf, final String fullName, final Date createDate, final List<Child> childs) {
+		super();
+		this.cpf = cpf;
+		this.fullName = fullName;
+		this.createDate = createDate;
+		this.childs = childs;
+	}
 
 	public String getCpf() {
 		return cpf;

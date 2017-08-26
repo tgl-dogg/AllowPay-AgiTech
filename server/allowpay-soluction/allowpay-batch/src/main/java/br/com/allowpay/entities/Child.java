@@ -31,6 +31,57 @@ public class Child implements Serializable {
 	@OneToMany
 	@JoinColumn
 	private List<CardRegister> cardRegisters;
+	
+	public Child(){
+		
+	}
+
+	public Child(final String fullName, final Dad dad, final List<CardRegister> cardRegisters) {
+		super();
+		this.fullName = fullName;
+		this.dad = dad;
+		this.cardRegisters = cardRegisters;
+	}
+	
+	public Child(final Long id, final String fullName, final Dad dad, final List<CardRegister> cardRegisters) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.dad = dad;
+		this.cardRegisters = cardRegisters;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public Dad getDad() {
+		return dad;
+	}
+
+	public void setDad(Dad dad) {
+		this.dad = dad;
+	}
+
+	public List<CardRegister> getCardRegisters() {
+		return cardRegisters;
+	}
+
+	public void setCardRegisters(List<CardRegister> cardRegisters) {
+		this.cardRegisters = cardRegisters;
+	}
 
 	@Override
 	public int hashCode() {

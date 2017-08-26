@@ -1,10 +1,12 @@
 package br.com.allowpay.canonical;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Extract{
+public class Extract implements Serializable{
 
+	private static final long serialVersionUID = 8976751451563561280L;
 
 	private final Date date;
 
