@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 
-import br.com.allowpay.builder.CardIdentificationBuilder;
-import br.com.allowpay.canonical.CardIdentification;
+import br.com.allowpay.builder.BalanceBuilder;
+import br.com.allowpay.canonical.Balance;
 import br.com.allowpay.entities.CardRegister;
 
 @Component
 public class CardRegisterToCardIdentificationConverter {
 
-	public CardIdentification convert(final CardRegister cardRegister) {
+	public Balance convert(final CardRegister cardRegister) {
 		final String cardId = cardRegister.getCardId();
 		final BigDecimal balanceValue = cardRegister.getBalance();
 
-		return CardIdentificationBuilder.create().withCardId(cardId).withBalance(balanceValue).build();
+		return BalanceBuilder.create().withCardId(cardId).withValue(balanceValue).build();
 	}
 }

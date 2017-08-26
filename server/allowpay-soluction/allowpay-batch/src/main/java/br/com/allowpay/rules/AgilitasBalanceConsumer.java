@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import br.com.allowpay.builder.BalanceBuilder;
 import br.com.allowpay.canonical.Balance;
-import br.com.allowpay.canonical.CardIdentification;
 import br.com.allowpay.integration.AgilitasRestClient;
 
 @Component
@@ -15,16 +14,16 @@ public class AgilitasBalanceConsumer {
 
 	@Autowired
 	private CompareBalanceValue compareBalanceValue;
-	
+
 	@Autowired
 	private AgilitasRestClient agilitarRestClient;
 
-	public Balance getBalance(final CardIdentification cardIdentification) {
+	public Balance getBalanceDiferenceAgilitasAndAllowpay(final Balance balance) {
 
-		final BigDecimal balanceAgilitar = agilitarRestClient.saldo(cardIdentification);
-		final BigDecimal balanceAllowPay = cardIdentification.getBalanceValue();
+		final BigDecimal balanceAgilitar = agilitarRestClient.saldo(balance.getCardId());
+		final BigDecimal balanceAllowPay = balance.getValue();
 		final BigDecimal balanceDiference = compareBalanceValue.balanceDiference(balanceAgilitar, balanceAllowPay);
 
-		return BalanceBuilder.create().withCardId(cardIdentification.getCardId()).withValue(balanceDiference).build();
+		return BalanceBuilder.create().withCardId(balance.getCardId()).withValue(balanceDiference).build();
 	}
 }

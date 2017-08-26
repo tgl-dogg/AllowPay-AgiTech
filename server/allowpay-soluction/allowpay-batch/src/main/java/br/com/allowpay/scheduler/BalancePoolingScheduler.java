@@ -32,7 +32,7 @@ public class BalancePoolingScheduler {
 	public void execute(){
 		findCardsIdentification.getCardsIdentification(pageCardRegister->{
 			pageCardRegister.parallelStream().forEach(cardIdentification->{
-				final Balance balance = agilitasBalanceConsumer.getBalance(cardIdentification);
+				final Balance balance = agilitasBalanceConsumer.getBalanceDiferenceAgilitasAndAllowpay(cardIdentification);
 				if(compareBalanceValue.balanceDiferenceZero(balance.getValue())){
 					balanceNotificationTopic.publish(balance);
 				}

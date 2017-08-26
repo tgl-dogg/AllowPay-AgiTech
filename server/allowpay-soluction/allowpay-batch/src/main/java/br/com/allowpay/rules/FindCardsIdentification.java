@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import br.com.allowpay.canonical.CardIdentification;
+import br.com.allowpay.canonical.Balance;
 import br.com.allowpay.converter.CardRegisterToCardIdentificationConverter;
 import br.com.allowpay.entities.CardRegister;
 import br.com.allowpay.repositories.CardRegisterRepository;
@@ -30,7 +30,7 @@ public class FindCardsIdentification {
 	@Autowired
 	private CardRegisterToCardIdentificationConverter cardRegisterToCardIdentificationConverter;
 
-	public void getCardsIdentification(final Consumer<List<CardIdentification>> consumerPageCardRegister) {
+	public void getCardsIdentification(final Consumer<List<Balance>> consumerPageCardRegister) {
 
 		final int page = START_PAGE;
 		final int size = PAGE_SIZE;
@@ -42,13 +42,12 @@ public class FindCardsIdentification {
 
 	}
 
-	private void getCardRegistersPage(final Pageable pageable,
-			final Consumer<List<CardIdentification>> consumerPageCardRegister, final ExecutorService executorService) {
+	private void getCardRegistersPage(final Pageable pageable, final Consumer<List<Balance>> consumerPageCardRegister,
+			final ExecutorService executorService) {
 		final Page<CardRegister> cardRegisters = cardRegisterRepository.findAll(pageable);
 
-
 		executorService.submit(() -> {
-			final List<CardIdentification> cardIdentifications = cardRegisters.getContent().parallelStream()
+			final List<Balance> cardIdentifications = cardRegisters.getContent().parallelStream()
 					.map(cardRegister -> cardRegisterToCardIdentificationConverter.convert(cardRegister))
 					.collect(Collectors.toList());
 			consumerPageCardRegister.accept(cardIdentifications);

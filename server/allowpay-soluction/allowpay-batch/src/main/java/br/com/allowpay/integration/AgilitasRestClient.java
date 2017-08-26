@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 
-import br.com.allowpay.canonical.CardIdentification;
+import br.com.allowpay.canonical.Balance;
 
 @Component
 public class AgilitasRestClient {
-	public BigDecimal saldo(final CardIdentification cardIdentification) {
+	public BigDecimal saldo(final String cardId) {
 		return null;
 	}
 }
