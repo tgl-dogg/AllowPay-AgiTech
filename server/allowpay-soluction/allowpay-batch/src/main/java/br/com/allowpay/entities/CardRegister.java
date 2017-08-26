@@ -30,6 +30,46 @@ public class CardRegister implements Serializable{
 	@ManyToOne
 	private Child child;
 
+	public String getCardId() {
+		return cardId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+
+	public String getDeviceNotificationDadId() {
+		return deviceNotificationDadId;
+	}
+
+	public void setDeviceNotificationDadId(String deviceNotificationDadId) {
+		this.deviceNotificationDadId = deviceNotificationDadId;
+	}
+
+	public String getDeviceNotificationChildId() {
+		return deviceNotificationChildId;
+	}
+
+	public void setDeviceNotificationChildId(String deviceNotificationChildId) {
+		this.deviceNotificationChildId = deviceNotificationChildId;
+	}
+
+	public Child getChild() {
+		return child;
+	}
+
+	public void setChild(Child child) {
+		this.child = child;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -14,9 +14,13 @@ buildscript {
 
 apply plugin: 'org.springframework.boot'
 
+repositories {
+    mavenCentral()
+}
+
 springBoot {
     backupSource = false
-    mainClass = 'br.com.allowpay.api.Application'
+    mainClass = 'br.com.allowpay.Application'
     executable = true
 }
 
@@ -24,8 +28,13 @@ configurations {
     providedRuntime
 }
 
-
 dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

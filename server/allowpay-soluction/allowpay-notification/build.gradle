@@ -20,6 +20,10 @@ springBoot {
     executable = true
 }
 
+repositories {
+    mavenCentral()
+}
+
 configurations {
     providedRuntime
 }

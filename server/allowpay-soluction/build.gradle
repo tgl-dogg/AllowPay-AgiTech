@@ -12,56 +12,39 @@ buildscript {
 	}
 }
 
-apply plugin: 'eclipse'
-apply plugin: 'java'
-apply plugin: 'io.spring.dependency-management' 
+apply plugin: 'org.springframework.boot'
 
-
-jar {
-	baseName = 'allowpay-soluction'
-	version = '0.0.1-SNAPSHOT'
+repositories {
+    mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+springBoot {
+    backupSource = false
+    mainClass = 'br.com.allowpay.Application'
+    executable = true
+}
+
+configurations {
+    providedRuntime
+}
 
 dependencies {
-	compile project(':allowpay-batch')
 	compile project(':allowpay-notification')
-}
+	compile project(':allowpay-batch')
+	compile project(':allowpay-api')
 
-allprojects {
-	apply plugin: 'java'
-	apply plugin: 'eclipse'
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('org.hsqldb:hsqldb')
 
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
 
-	compileJava {
-    	options.fork = true
-    	options.incremental = true
-	}
-	
-	repositories {
-		mavenCentral()
-		maven {url "http://central.maven.org/maven2"}
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }	
-	}
-}
+	compile group: 'com.hazelcast', name: 'hazelcast', version: '3.8.4'
+	compile group: 'com.hazelcast', name: 'hazelcast-spring', version: '3.8.4'
 
-subprojects {
-    group = 'allowpay'
-    version = '0.0.1'
-
-    dependencies {
-        testCompile('org.springframework.boot:spring-boot-starter-test')
-    }
-
-    repositories {
-        mavenCentral()
-        maven{
-   			url 'https://code.lds.org/nexus/content/groups/main-repo'
-    	}
-    }
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
