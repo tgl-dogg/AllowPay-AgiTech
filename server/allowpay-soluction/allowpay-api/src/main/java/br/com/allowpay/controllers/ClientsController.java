@@ -1,5 +1,7 @@
 package br.com.allowpay.controllers;
 
+import java.net.URI;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,7 @@ public class ClientsController {
 	@PostMapping
 	ResponseEntity<Void> setClient(@RequestBody final Client client) {
 		// TODO: Registra o cliente
-		return ResponseEntity.created(null).build();
+		return ResponseEntity.created(URI.create("http://allowpay.me")).build();
 	}
 
 }

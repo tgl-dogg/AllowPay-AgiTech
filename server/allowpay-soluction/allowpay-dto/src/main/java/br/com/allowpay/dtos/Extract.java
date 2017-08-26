@@ -1,7 +1,6 @@
 package br.com.allowpay.dtos;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 public class Extract implements Serializable {
 
@@ -9,12 +8,12 @@ public class Extract implements Serializable {
 
 	private String cardId;
 
-	private BigDecimal value;
+	private Integer value;
 
 	public Extract() {
 	}
 
-	public Extract(final String cardId, final BigDecimal value) {
+	public Extract(final String cardId, final Integer value) {
 		super();
 		this.cardId = cardId;
 		this.value = value;
@@ -28,11 +27,11 @@ public class Extract implements Serializable {
 		this.cardId = cardId;
 	}
 
-	public BigDecimal getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
-	public void setValue(BigDecimal value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 

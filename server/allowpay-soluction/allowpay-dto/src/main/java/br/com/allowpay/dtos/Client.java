@@ -1,6 +1,8 @@
 package br.com.allowpay.dtos;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class Client implements Serializable {
 
@@ -10,13 +12,16 @@ public class Client implements Serializable {
 
 	private String name;
 
+	private Collection<Card> cards = new HashSet<>();
+
 	public Client() {
 	}
 
-	public Client(final String identify, final String name) {
+	public Client(final String identify, final String name, final Card card) {
 		super();
 		this.identify = identify;
 		this.name = name;
+		this.cards.add(card);
 	}
 
 	public String getIdentify() {
@@ -33,6 +38,14 @@ public class Client implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Collection<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(Collection<Card> cards) {
+		this.cards = cards;
 	}
 
 	@Override
