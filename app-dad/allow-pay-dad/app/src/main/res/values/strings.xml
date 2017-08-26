@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AllowPay Dad</string>
+    <string name="title_activity_visa_checkout">visaCheckoutActivity</string>
 </resources>
