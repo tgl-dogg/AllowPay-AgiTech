@@ -2,6 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dad.allowpay.me.allowpaydad">
 
+    <!-- Permissões necessárias para o reconhecimento facial -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- making camera autofocus as true because of tablet support -->
+    <!--
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="true" />
+    -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -37,9 +52,12 @@
             android:name="com.visa.checkout.VisaMcomActivity"
             android:configChanges="locale|layoutDirection|orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.VisaCheckoutActivity"
+            android:name=".activities.ChargeCardsActivity"
             android:label="@string/title_activity_visa_checkout"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.MenuActivity" />
+        <activity android:name=".activities.CardDetailsActivity" />
+        <activity android:name=".activities.AddCardActivity"></activity>
     </application>
 
 </manifest>

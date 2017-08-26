@@ -1,10 +1,7 @@
 package dad.allowpay.me.allowpaydad.activities;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
 
 import com.visa.checkout.VisaMcomLibrary;
@@ -15,7 +12,7 @@ import com.visa.checkout.widget.VisaExpressCheckoutButton;
 import dad.allowpay.me.allowpaydad.ConfigureVisaPaymentInfo;
 import dad.allowpay.me.allowpaydad.R;
 
-public class VisaCheckoutActivity extends AppCompatActivity implements VisaExpressCheckoutButton.CheckoutWithVisaListener {
+public class ChargeCardsActivity extends AppCompatActivity implements VisaExpressCheckoutButton.CheckoutWithVisaListener {
 
     private VisaMcomLibrary visaMcomLibrary = null;
     private VisaPaymentInfo visaPaymentInfo = null;
@@ -24,9 +21,15 @@ public class VisaCheckoutActivity extends AppCompatActivity implements VisaExpre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeVisaCheckoutSdk();
-        setContentView(R.layout.activity_visa_checkout);
 
+//        VisaExpressCheckoutButton visaPaymentButton = (VisaExpressCheckoutButton) findViewById(R.id.visaEXOButton);
+//        visaPaymentButton.setCheckoutListener(this);
+
+        setContentView(R.layout.activity_charge_cards);
     }
+
+
+
 
     //Visa Checkout
 
@@ -76,6 +79,6 @@ public class VisaCheckoutActivity extends AppCompatActivity implements VisaExpre
 
     @Override
     public VisaPaymentInfo getPaymentInfo() {
-        return null;
+        return getVisaPaymentInfo();
     }
 }
