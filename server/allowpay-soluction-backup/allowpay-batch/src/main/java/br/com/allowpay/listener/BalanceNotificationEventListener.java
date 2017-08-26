@@ -12,6 +12,6 @@ public class BalanceNotificationEventListener implements MessageListener<Balance
 
 	@Override
 	public void onMessage(final Message<Balance> message) {
-		System.out.println(message.getMessageObject());
+		
 	}
 }

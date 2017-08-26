@@ -3,10 +3,10 @@ package br.com.allowpay.rules;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,10 +24,8 @@ public class FindCardsIdentification {
 	private static final int PAGE_SIZE = 1000;
 	private static final int THREAD_POOL_SIZE = 10;
 
-	@Autowired
 	private CardRegisterRepository cardRegisterRepository;
 
-	@Autowired
 	private CardRegisterToCardIdentificationConverter cardRegisterToCardIdentificationConverter;
 
 	public void getCardsIdentification(final Consumer<List<CardIdentification>> consumerPageCardRegister) {

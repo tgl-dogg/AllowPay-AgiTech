@@ -2,7 +2,6 @@ package br.com.allowpay.scheduler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hazelcast.core.ITopic;
@@ -28,7 +27,6 @@ public class BalancePoolingScheduler {
 	@Qualifier("balanceNotificationTopic")
 	private ITopic<Balance> balanceNotificationTopic;
 	
-	@Scheduled(fixedRate=10000)
 	public void execute(){
 		findCardsIdentification.getCardsIdentification(pageCardRegister->{
 			pageCardRegister.parallelStream().forEach(cardIdentification->{

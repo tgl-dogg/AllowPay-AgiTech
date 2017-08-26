@@ -1,0 +1,4 @@
+include ':allowpay-notification'
+include ':allowpay-batch'
+include ':allowpay-api'
+rootProject.name = 'allowpay-soluction'

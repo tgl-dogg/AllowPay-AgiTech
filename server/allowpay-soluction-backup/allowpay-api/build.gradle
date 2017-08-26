@@ -1,0 +1,31 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		maven {url "http://central.maven.org/maven2/"}
+		maven { url "https://repo.spring.io/release"}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:0.5.1.RELEASE")
+	}
+}
+
+apply plugin: 'org.springframework.boot'
+
+springBoot {
+    backupSource = false
+    mainClass = 'br.com.allowpay.Application'
+    executable = true
+}
+
+configurations {
+    providedRuntime
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-hateoas')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
