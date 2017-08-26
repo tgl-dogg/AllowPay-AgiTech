@@ -4,32 +4,22 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class Client implements Serializable {
+public abstract class Client implements Serializable {
 
-	private static final long serialVersionUID = 3609902554787641522L;
-
-	private String identify;
+	private static final long serialVersionUID = -775080252163168280L;
 
 	private String name;
 
 	private Collection<Card> cards = new HashSet<>();
 
 	public Client() {
-	}
-
-	public Client(final String identify, final String name, final Card card) {
 		super();
-		this.identify = identify;
+	}
+
+	public Client(final String name, final Collection<Card> cards) {
+		super();
 		this.name = name;
-		this.cards.add(card);
-	}
-
-	public String getIdentify() {
-		return identify;
-	}
-
-	public void setIdentify(String identify) {
-		this.identify = identify;
+		this.cards = cards;
 	}
 
 	public String getName() {
@@ -52,7 +42,7 @@ public class Client implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((identify == null) ? 0 : identify.hashCode());
+		result = prime * result + ((cards == null) ? 0 : cards.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -66,10 +56,10 @@ public class Client implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (identify == null) {
-			if (other.identify != null)
+		if (cards == null) {
+			if (other.cards != null)
 				return false;
-		} else if (!identify.equals(other.identify))
+		} else if (!cards.equals(other.cards))
 			return false;
 		if (name == null) {
 			if (other.name != null)
