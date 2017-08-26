@@ -30,6 +30,7 @@ configurations {
 
 dependencies {
 	compile project(':allowpay-commum')
+	compile project(':allowpay-dto')
 	
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-web')
