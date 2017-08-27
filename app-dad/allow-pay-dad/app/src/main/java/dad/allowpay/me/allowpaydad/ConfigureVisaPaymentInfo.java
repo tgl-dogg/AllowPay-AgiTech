@@ -46,7 +46,7 @@ public class ConfigureVisaPaymentInfo {
      */
     public static String VISA_CHECKOUT_PROFILE_NAME = "profile1"; // TODO
 
-    public static VisaPaymentInfo getSampleVisaPaymentInfo() {
+    public static VisaPaymentInfo getSampleVisaPaymentInfo(Double pedidoTotal) {
         VisaPaymentInfo paymentInfo = new VisaPaymentInfo();
 
         /* REQUIRED: If merchant needs to collect shipping address from the user. */

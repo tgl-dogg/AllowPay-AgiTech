@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">AllowPay Dad</string>
     <string name="title_activity_visa_checkout">visaCheckoutActivity</string>
-    <string name="title_activity_merchant_localization">Map</string>
-    <string name="title_activity_maps">Map</string>
 </resources>

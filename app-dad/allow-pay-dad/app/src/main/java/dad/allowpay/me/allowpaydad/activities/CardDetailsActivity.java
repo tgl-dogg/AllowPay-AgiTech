@@ -15,7 +15,7 @@ public class CardDetailsActivity extends AppCompatActivity {
     }
 
     private void startChargeCardsActivity(){
-        Intent chargeCardsIntent = new Intent(this, ChargeCardsActivity.class);
+        Intent chargeCardsIntent = new Intent(this, RechargeCardActivity.class);
         startActivity(chargeCardsIntent);
     }
 

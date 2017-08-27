@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import dad.allowpay.me.allowpaydad.activities.ChargeCardsActivity;
 import dad.allowpay.me.allowpaydad.activities.MenuActivity;
 
 

@@ -100,7 +100,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void startRechargeCardsActivity(){
-        Intent chargeCardsIntent = new Intent(this, ChargeCardsActivity.class);
+        Intent chargeCardsIntent = new Intent(this, RechargeCardActivity.class);
         startActivity(chargeCardsIntent);
     }
 
