@@ -2,16 +2,16 @@ package br.com.allowpay.converters;
 
 import org.springframework.stereotype.Component;
 
-import br.com.allowpay.canonical.CardRegister;
+import br.com.allowpay.canonical.Register;
 import br.com.allowpay.dtos.Card;
 
 @Component
 public class CardToRegisterConverter {
 
-	public CardRegister convert(final Card card) {
+	public Register convert(final Card card) {
 		final String id = card.getId();
 
-		final CardRegister register = new CardRegister(id);
+		final Register register = new Register(id, null, null, null, null, null);
 		return register;
 	}
 
