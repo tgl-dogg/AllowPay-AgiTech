@@ -4,21 +4,25 @@
 
     <item
         android:id="@+id/empty"
-        android:title=""
+        android:icon="@mipmap/ic_more_vert_white_36dp"
         android:orderInCategory="101"
         app:showAsAction="always"
-        android:icon="@mipmap/ic_more_vert_white_36dp">
+
+        >
 
         <menu>
-            <item android:id="@+id/action_refresh"
-                android:icon="@mipmap/ic_refresh_black_24dp"
-                app:showAsAction="ifRoom"
-                android:title="Atualizar" />
 
-            <item android:id="@+id/action_lock_card"
+            <item
+                android:id="@+id/action_refresh"
+                android:icon="@mipmap/ic_refresh_black_24dp"
+                android:title="Atualizar"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/action_lock_card"
                 android:icon="@mipmap/ic_lock_outline_black_24dp"
-                app:showAsAction="ifRoom"
-                android:title="Bloquear Cartão" />
+                android:title="Bloquear Cartão"
+                app:showAsAction="ifRoom" />
         </menu>
     </item>
 </menu>

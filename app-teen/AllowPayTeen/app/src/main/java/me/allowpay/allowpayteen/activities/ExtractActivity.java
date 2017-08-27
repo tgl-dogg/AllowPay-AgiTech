@@ -65,7 +65,7 @@ public class ExtractActivity extends AppCompatActivity {
     }
 
     private void instanceViews() {
-        mTextViewBonus = (TextView) findViewById(R.id.textViewBonus);
+        mTextViewBonus = (TextView) findViewById(R.id.textView6);
         mTextViewBalance = (TextView) findViewById(R.id.textViewBalance);
 
         mListView = (ListView) findViewById(R.id.listView);
