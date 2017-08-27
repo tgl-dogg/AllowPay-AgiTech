@@ -10,4 +10,6 @@ public class LocalBroadcastUtils {
     public static final String ACTION_REQUEST_AP_BONUS = "allowpay/bonus";
 
     public static final String ACTION_REQUEST_AP_EXTRACT = "allowpay/extract";
+
+    public static final String ACTION_REQUEST_AP_BLOCK = "allowpay/block";
 }

@@ -25,7 +25,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <permission android:name ="com.example.locations.permission.MAPS_RECEIVE" android:protectionLevel="signature"></permission>
+    <permission
+        android:name="com.example.locations.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
 
     <!-- card.io: Permission to vibrate - recommended, allows vibration feedback on scan -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -48,8 +50,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         tools:replace="allowBackup"
-
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,10 +79,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
 
-
-
+        <activity android:name=".activities.ExtractActivity"></activity>
     </application>
-
-
 
 </manifest>
