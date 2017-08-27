@@ -1,4 +1,4 @@
-package me.allowpay.allowpayteen.pojos;
+package dad.allowpay.me.allowpaydad.pojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

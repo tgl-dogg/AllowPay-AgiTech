@@ -7,6 +7,7 @@ import android.os.Bundle;
 import dad.allowpay.me.allowpaydad.activities.ChargeCardsActivity;
 import dad.allowpay.me.allowpaydad.activities.MenuActivity;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

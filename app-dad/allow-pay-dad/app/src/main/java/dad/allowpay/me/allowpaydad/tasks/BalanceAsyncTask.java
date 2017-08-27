@@ -1,4 +1,4 @@
-package me.allowpay.allowpayteen.tasks;
+package dad.allowpay.me.allowpaydad.tasks;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,10 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import me.allowpay.allowpayteen.activities.ExtractActivity;
-import me.allowpay.allowpayteen.pojos.Balance;
-import me.allowpay.allowpayteen.utils.HttpUtils;
-import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
+
+import dad.allowpay.me.allowpaydad.pojos.Balance;
+import dad.allowpay.me.allowpaydad.utils.HttpUtils;
+import dad.allowpay.me.allowpaydad.utils.LocalBroadcastUtils;
 
 /**
  * Created by Pitstop on 26/08/2017.

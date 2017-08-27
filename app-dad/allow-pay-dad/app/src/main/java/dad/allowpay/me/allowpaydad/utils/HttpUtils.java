@@ -1,4 +1,4 @@
-package me.allowpay.allowpayteen.utils;
+package dad.allowpay.me.allowpaydad.utils;
 
 import org.springframework.http.HttpHeaders;
 

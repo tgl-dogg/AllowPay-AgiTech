@@ -1,4 +1,4 @@
-package me.allowpay.allowpayteen.utils;
+package dad.allowpay.me.allowpaydad.utils;
 
 /**
  * Created by Pitstop on 26/08/2017.

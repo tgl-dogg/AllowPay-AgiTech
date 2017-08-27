@@ -1,35 +1,37 @@
-package me.allowpay.allowpayteen.tasks;
+package dad.allowpay.me.allowpaydad.tasks;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import me.allowpay.allowpayteen.activities.ExtractActivity;
-import me.allowpay.allowpayteen.pojos.Balance;
-import me.allowpay.allowpayteen.utils.HttpUtils;
-import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
+import java.util.ArrayList;
+import java.util.List;
+
+import dad.allowpay.me.allowpaydad.pojos.Extract;
+import dad.allowpay.me.allowpaydad.utils.HttpUtils;
+import dad.allowpay.me.allowpaydad.utils.LocalBroadcastUtils;
 
 /**
  * Created by Pitstop on 26/08/2017.
  */
-public class BalanceAsyncTask extends AsyncTask<String, Void, Balance> {
+public class ExtractAsyncTask extends AsyncTask<String, Void, ArrayList<Extract>> {
 
-    private static final String endpoint = "/balance";
+    private static final String endpoint = "/extract";
 
     private Context mContext;
 
     private ProgressDialog mProgressDialog;
 
-    public BalanceAsyncTask(Context context) {
+    public ExtractAsyncTask(Context context) {
         mContext = context;
     }
 
@@ -42,22 +44,25 @@ public class BalanceAsyncTask extends AsyncTask<String, Void, Balance> {
     }
 
     @Override
-    protected Balance doInBackground(String... params) {
+    protected ArrayList<Extract> doInBackground(String... params) {
         String url = HttpUtils.URL + "cards/" + params[0] + endpoint;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         HttpEntity entity = new HttpEntity(HttpUtils.getDefaultHttpHeaders());
 
-        ResponseEntity<Balance> response = restTemplate.exchange(url, HttpMethod.GET, entity, Balance.class);
+        ResponseEntity<ArrayList<Extract>> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+                new ParameterizedTypeReference<ArrayList<Extract>>() {
+                    // vários nadas.
+                });
 
-        Balance balance = response.getBody();
-        return balance;
+        ArrayList<Extract> extracts = response.getBody();
+        return extracts;
     }
 
     @Override
-    protected void onPostExecute(Balance balance) {
-        Intent intent = new Intent(LocalBroadcastUtils.ACTION_REQUEST_AP_BALANCE);
-        intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_BALANCE, balance);
+    protected void onPostExecute(ArrayList<Extract> extracts) {
+        Intent intent = new Intent(LocalBroadcastUtils.ACTION_REQUEST_AP_EXTRACT);
+        intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_EXTRACT, extracts);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
         if (mProgressDialog.isShowing()) {

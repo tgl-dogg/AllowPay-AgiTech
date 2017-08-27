@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,19 +19,43 @@ import dad.allowpay.me.allowpaydad.pojos.Card;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button addCardButton;
-    private Button rechargeCardButton;
-    private List<Card> cards = new ArrayList<Card>();
+
+    private ListView mListView;
+    private Button addCardButton, rechargeCardButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        instanceButtons();
+        instanceViews();
+        updateCards();
 
-        mockCard();
+
+    }
+
+    private void instanceViews() {
+        mListView = (ListView) findViewById(R.id.listView);
+    }
+
+    private void instanceButtons() {
         buildAddCardButton();
         buildRechargeButton();
+    }
 
+
+    private void updateCards() {
+        List<String> array = new ArrayList<>();
+        array.add("João");
+        array.add("Maria");
+        array.add("Tião");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                array );
+
+        mListView.setAdapter(arrayAdapter);
     }
 
     private void buildAddCardButton(){

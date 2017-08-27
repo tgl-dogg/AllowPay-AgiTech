@@ -1,4 +1,4 @@
-package me.allowpay.allowpayteen.activities;
+package dad.allowpay.me.allowpaydad.activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,14 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import me.allowpay.allowpayteen.R;
-import me.allowpay.allowpayteen.pojos.Balance;
-import me.allowpay.allowpayteen.pojos.Bonus;
-import me.allowpay.allowpayteen.pojos.Extract;
-import me.allowpay.allowpayteen.tasks.BalanceAsyncTask;
-import me.allowpay.allowpayteen.tasks.BonusAsyncTask;
-import me.allowpay.allowpayteen.tasks.ExtractAsyncTask;
-import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
+import dad.allowpay.me.allowpaydad.R;
+import dad.allowpay.me.allowpaydad.pojos.Balance;
+import dad.allowpay.me.allowpaydad.pojos.Bonus;
+import dad.allowpay.me.allowpaydad.pojos.Extract;
+import dad.allowpay.me.allowpaydad.tasks.BalanceAsyncTask;
+import dad.allowpay.me.allowpaydad.tasks.ExtractAsyncTask;
+import dad.allowpay.me.allowpaydad.utils.LocalBroadcastUtils;
 
 public class ExtractActivity extends AppCompatActivity {
 
@@ -69,7 +68,7 @@ public class ExtractActivity extends AppCompatActivity {
 
     private void startRequests() {
         new BalanceAsyncTask(this).execute("000001");
-        new BonusAsyncTask(this).execute("000001");
+        new dad.allowpay.me.allowpaydad.tasks.BonusAsyncTask(this).execute("000001");
         new ExtractAsyncTask(this).execute("000001");
     }
 

@@ -1,6 +1,7 @@
-package me.allowpay.allowpayteen.pojos;
+package dad.allowpay.me.allowpaydad.pojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
@@ -8,14 +9,15 @@ import java.io.Serializable;
  * Created by Pitstop on 26/08/2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Bonus implements Serializable {
+public class Balance implements Serializable {
+
     private String cardId;
     private Integer value;
 
-    public Bonus() {
+    public Balance() {
     }
 
-    public Bonus(String cardId, Integer value) {
+    public Balance(String cardId, Integer value) {
         this.cardId = cardId;
         this.value = value;
     }

@@ -1,11 +1,10 @@
-package me.allowpay.allowpayteen.tasks;
+package dad.allowpay.me.allowpaydad.tasks;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -13,23 +12,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import me.allowpay.allowpayteen.activities.ExtractActivity;
-import me.allowpay.allowpayteen.pojos.Balance;
-import me.allowpay.allowpayteen.utils.HttpUtils;
-import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
+import dad.allowpay.me.allowpaydad.pojos.Bonus;
+import dad.allowpay.me.allowpaydad.utils.HttpUtils;
+import dad.allowpay.me.allowpaydad.utils.LocalBroadcastUtils;
 
 /**
  * Created by Pitstop on 26/08/2017.
  */
-public class BalanceAsyncTask extends AsyncTask<String, Void, Balance> {
+public class BonusAsyncTask extends AsyncTask<String, Void, Bonus> {
 
-    private static final String endpoint = "/balance";
+    private static final String endpoint = "/bonus";
 
     private Context mContext;
 
     private ProgressDialog mProgressDialog;
 
-    public BalanceAsyncTask(Context context) {
+    public BonusAsyncTask(Context context) {
         mContext = context;
     }
 
@@ -42,22 +40,22 @@ public class BalanceAsyncTask extends AsyncTask<String, Void, Balance> {
     }
 
     @Override
-    protected Balance doInBackground(String... params) {
+    protected Bonus doInBackground(String... params) {
         String url = HttpUtils.URL + "cards/" + params[0] + endpoint;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         HttpEntity entity = new HttpEntity(HttpUtils.getDefaultHttpHeaders());
 
-        ResponseEntity<Balance> response = restTemplate.exchange(url, HttpMethod.GET, entity, Balance.class);
+        ResponseEntity<Bonus> response = restTemplate.exchange(url, HttpMethod.GET, entity, Bonus.class);
 
-        Balance balance = response.getBody();
-        return balance;
+        Bonus bonus = response.getBody();
+        return bonus;
     }
 
     @Override
-    protected void onPostExecute(Balance balance) {
-        Intent intent = new Intent(LocalBroadcastUtils.ACTION_REQUEST_AP_BALANCE);
-        intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_BALANCE, balance);
+    protected void onPostExecute(Bonus bonus) {
+        Intent intent = new Intent(LocalBroadcastUtils.ACTION_REQUEST_AP_BONUS);
+        intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_BONUS, bonus);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
         if (mProgressDialog.isShowing()) {
