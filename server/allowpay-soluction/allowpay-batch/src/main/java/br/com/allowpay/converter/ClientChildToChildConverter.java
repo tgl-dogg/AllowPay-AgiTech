@@ -1,6 +1,7 @@
 package br.com.allowpay.converter;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +20,32 @@ public class ClientChildToChildConverter {
 
 	@Autowired
 	private RegisterToCardRegisterConverter registerToCardRegisterConverter;
-	
+
 	@Autowired
 	private ClientDadToDadConverter clientDadToDadConverter;
 
 	public Child convert(final ClientChild clientChild) {
 
+		final ChildBuilder childBuilder = ChildBuilder.create();
+
 		final Long id = clientChild.getId();
 		final String fullName = clientChild.getName();
 		final List<Register> registers = clientChild.getRegisters();
+
+		Optional.ofNullable(registers).ifPresent(consumer -> {
+			final List<CardRegister> cardRegisters = consumer.parallelStream()
+					.map(register -> registerToCardRegisterConverter.convert(register)).collect(Collectors.toList());
+
+			childBuilder.withCardRegisters(cardRegisters);
+		});
+
 		final ClientDad clientDad = clientChild.getClientDad();
 
+		Optional.ofNullable(clientDad).ifPresent(consumer -> {
+			final Dad dad = clientDadToDadConverter.convert(consumer);
+			childBuilder.withDad(dad);
+		});
 
-		final List<CardRegister> cardRegisters = registers.parallelStream()
-				.map(register -> registerToCardRegisterConverter.convert(register)).collect(Collectors.toList());
-
-		final Dad dad = clientDadToDadConverter.convert(clientDad);
-		
-		return ChildBuilder.create().withId(id).withFullName(fullName).withCardRegisters(cardRegisters).withDad(dad)
-				.build();
+		return childBuilder.withId(id).withFullName(fullName).build();
 	}
 }

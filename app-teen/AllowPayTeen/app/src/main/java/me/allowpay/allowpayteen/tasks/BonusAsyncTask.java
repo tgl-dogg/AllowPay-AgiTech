@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import me.allowpay.allowpayteen.activities.ExtractActivity;
 import me.allowpay.allowpayteen.pojos.Bonus;
 import me.allowpay.allowpayteen.utils.HttpUtils;
 import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;

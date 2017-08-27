@@ -1,73 +1,89 @@
 package br.com.allowpay.controllers;
 
 import java.net.URI;
-import java.util.Collection;
-import java.util.Date;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.allowpay.dtos.Coordinate;
-import br.com.allowpay.dtos.Extract;
-import br.com.allowpay.dtos.FullExtract;
+import br.com.allowpay.canonical.Balance;
+import br.com.allowpay.canonical.Extract;
+import br.com.allowpay.converters.BalanceToExtractConverter;
+import br.com.allowpay.converters.ExtractToFullExtractDtoConverter;
+import br.com.allowpay.dtos.ExtractDto;
+import br.com.allowpay.dtos.FullExtractDto;
+import br.com.allowpay.integrator.AgilitasCardRestClient;
 
 @RestController
 @RequestMapping("${api.version}/cards")
 public class CardsController {
 	
+	//TODO: HazelCastConfiguration copiar...
+	//TODO: MonitorBalanceAgilitasFasade exemplo, injetar, chamar o método e enviar
+	//@Bean(name = "registerNotificationTopic")
+	//@Bean(name = "dadNotificationTopic")
+	//@Bean(name = "childNotificationTopic")
+	
+	//BalanceNotificationEventListener, ouvir e notificar os aplicativos...
+	
+	
+	@Autowired
+	private AgilitasCardRestClient agilitasCardRestClient;
+	
+	@Autowired
+	private BalanceToExtractConverter balanceToExtractConverter;
+	
+	@Autowired
+	private ExtractToFullExtractDtoConverter extractDtoToFullExtractConverter;
 	
 	@GetMapping("/{cardId}/bonus")
-	ResponseEntity<Extract> getBonus(@PathVariable("cardId") String cardId){
+	ResponseEntity<ExtractDto> getBonus(@PathVariable("cardId") String cardId){
 		//TODO: Recuperar informações de bônus do cliente informado.
 
-		final Extract extractBonus = getMockExtract(cardId);
+		final ExtractDto extractBonus = getMockExtract(cardId);
 		return ResponseEntity.ok(extractBonus);
 	}
 	
 	@GetMapping("/{cardId}/extract")
-	ResponseEntity<Collection<FullExtract>> getExtract(@PathVariable("cardId") String cardId){
-		//TODO: Recuperar informações de extrato do cliente informado.
+	ResponseEntity<List<FullExtractDto>> getExtract(@PathVariable("cardId") String cardId){
+		final List<Extract> extracts = agilitasCardRestClient.getExtract(cardId);
+		final List<FullExtractDto> fullExtracts = new ArrayList<>(extracts.size());
+		extracts.forEach( (extract)  ->{
+			final FullExtractDto fullExtractDto = extractDtoToFullExtractConverter.convert(extract);
+			fullExtractDto.setCardId(cardId);
+			fullExtracts.add(fullExtractDto);
+		});
 		
-		final Collection<FullExtract> extracts = getMockFullExtracts(cardId);
-		return ResponseEntity.ok(extracts);
-	}
-	
-	
-	private Collection<FullExtract> getMockFullExtracts(final String cardId) {
-		return Stream.of(getMockFullExtract(cardId)).collect(Collectors.toList());
+		return ResponseEntity.ok(fullExtracts);
 	}
 
-	private FullExtract getMockFullExtract(final String cardId) {
-		final Coordinate coordinate = new Coordinate(-22.8174189, -47.0408599);
-		final FullExtract fullExtract = new FullExtract(cardId, 9999, new Date(), "Merchant Test", "Carga", coordinate);
-		return fullExtract;
-	}
 
 	@GetMapping("/{cardId}/balance")
-	ResponseEntity<Extract> getBalance(@PathVariable("cardId") String cardId){
-		//TODO: Recuperar informações de extrato do cliente informado.
+	ResponseEntity<ExtractDto> getBalance(@PathVariable("cardId") String cardId){
+		final Balance balance = agilitasCardRestClient.getBalance(cardId);
+		final ExtractDto balanceExtract = balanceToExtractConverter.convert(balance);
 		
-		final Extract extractBalance = getMockExtract(cardId);
-		return ResponseEntity.ok(extractBalance);
+		return ResponseEntity.ok(balanceExtract);
 	}
 	
 	@PostMapping("/{cardId}/payment")
-	ResponseEntity<Void> setPayment(@PathVariable("cardId") String cardId){
-		//TODO: Realizar o pagamento
-		
+	ResponseEntity<Void> setPayment(@PathVariable("cardId") String cardId, @RequestParam("amount") Integer amount){
+		agilitasCardRestClient.recharge(cardId, Double.valueOf(amount / 100));
+		//TODO: Definir url de chamada para verificação do pagamento
 		return ResponseEntity.created(URI.create("http://allowpay.me")).build();
 	}
 	
-	private Extract getMockExtract(final String cardId){
+	private ExtractDto getMockExtract(final String cardId){
 		final Integer value = 10000;
 		
-		final Extract extract = new Extract(cardId, value);
+		final ExtractDto extract = new ExtractDto(cardId, value);
 		return extract;
 	}
 	

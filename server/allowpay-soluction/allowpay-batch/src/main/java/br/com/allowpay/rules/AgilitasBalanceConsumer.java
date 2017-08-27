@@ -30,7 +30,12 @@ public class AgilitasBalanceConsumer {
 			final BigDecimal balanceAllowPay = balance.getValue();
 			final BigDecimal balanceDiference = compareBalanceValue.balanceDiference(balanceAgilitar, balanceAllowPay);
 
-			return BalanceBuilder.create().withCardId(balance.getCardId()).withValue(balanceDiference).build();
+			final String deviceNotificationChildId = balance.getDeviceNotificationChildId();
+			final String deviceNotificationDadId = balance.getDeviceNotificationDadId();
+
+			return BalanceBuilder.create().withCardId(balance.getCardId()).withValue(balanceDiference)
+					.withDeviceNotificationChildId(deviceNotificationChildId)
+					.withDeviceNotificationDadId(deviceNotificationDadId).build();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

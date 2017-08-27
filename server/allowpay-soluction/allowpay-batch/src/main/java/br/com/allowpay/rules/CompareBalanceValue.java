@@ -9,7 +9,7 @@ public class CompareBalanceValue {
 
 	public BigDecimal balanceDiference(final BigDecimal balanceAgilitar, final BigDecimal balanceAllowPay) {
 		if (balanceAgilitar != null) {
-			return balanceAgilitar.subtract(balanceAllowPay);
+			return balanceAgilitar.subtract(balanceAllowPay == null ? BigDecimal.ZERO : balanceAllowPay);
 		} else {
 			return BigDecimal.ZERO;
 		}
@@ -17,7 +17,7 @@ public class CompareBalanceValue {
 
 	public Boolean balanceDiferenceZero(final BigDecimal bigDecimal) {
 		if (bigDecimal != null) {
-			return bigDecimal.compareTo(BigDecimal.ZERO) != 0;
+			return bigDecimal.compareTo(BigDecimal.ZERO) == 0;
 		} else {
 			return Boolean.FALSE;
 		}

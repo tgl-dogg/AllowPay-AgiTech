@@ -36,11 +36,11 @@ public class Register implements Serializable {
 	}
 
 	public String getDeviceNotificationChildId() {
-		return deviceNotificationDadId;
+		return deviceNotificationChildId;
 	}
 
 	public String getDeviceNotificationDadId() {
-		return deviceNotificationChildId;
+		return deviceNotificationDadId;
 	}
 
 	public ClientChild getClientChild() {

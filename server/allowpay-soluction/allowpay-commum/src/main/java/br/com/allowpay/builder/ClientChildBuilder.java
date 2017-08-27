@@ -25,16 +25,19 @@ public class ClientChildBuilder {
 		return this;
 	}
 
-	public void withId(final Long id) {
+	public ClientChildBuilder withId(final Long id) {
 		this.id = id;
+		return this;
 	}
 
-	public void withRegisters(final List<Register> registers) {
+	public ClientChildBuilder withRegisters(final List<Register> registers) {
 		this.registers = registers;
+		return this;
 	}
 
-	public void withClientDad(final ClientDad clientDad) {
+	public ClientChildBuilder withClientDad(final ClientDad clientDad) {
 		this.clientDad = clientDad;
+		return this;
 	}
 
 	public ClientChild build() {

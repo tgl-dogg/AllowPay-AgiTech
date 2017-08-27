@@ -1,12 +1,10 @@
 package br.com.allowpay.dtos;
 
-import java.util.Date;
-
 public class FullExtract extends Extract {
 
 	private static final long serialVersionUID = -2351200876485273954L;
 
-	private Date date;
+	private String date;
 
 	private String merchant;
 
@@ -18,7 +16,7 @@ public class FullExtract extends Extract {
 		super();
 	}
 
-	public FullExtract(final String cardId, final Integer value, final Date date, final String merchant,
+	public FullExtract(final String cardId, final Integer value, final String date, final String merchant,
 			final String type, final Coordinate coordinate) {
 		super(cardId, value);
 		this.date = date;
@@ -27,11 +25,11 @@ public class FullExtract extends Extract {
 		this.coordinate = coordinate;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

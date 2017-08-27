@@ -15,13 +15,14 @@ public class ClientChildToClientChildConverter {
 	@Autowired
 	private CardToRegisterConverter cardToRegisterConverter;
 
-	public ClientChild convert(final br.com.allowpay.dtos.ClientChild child) {
+	public ClientChild convert(final br.com.allowpay.dtos.ClientChildDto child) {
 		final String name = child.getName();
 		final List<Register> registers = new ArrayList<>();
 		child.getCards().forEach((card) -> {
 			registers.add(cardToRegisterConverter.convert(card));
 		});
 
+		//TODO: Preencher
 		final ClientChild clientChild = new ClientChild(name, null, registers, null);
 		return clientChild;
 	}
