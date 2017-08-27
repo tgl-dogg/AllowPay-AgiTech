@@ -15,6 +15,11 @@ public class CardRegisterToCardIdentificationConverter {
 		final String cardId = cardRegister.getCardId();
 		final BigDecimal balanceValue = cardRegister.getBalance();
 
-		return BalanceBuilder.create().withCardId(cardId).withValue(balanceValue).build();
+		final String deviceNotificationChildId = cardRegister.getDeviceNotificationChildId();
+		final String deviceNotificationDadId = cardRegister.getDeviceNotificationDadId();
+		
+		return BalanceBuilder.create().withCardId(cardId).withValue(balanceValue)
+				.withDeviceNotificationChildId(deviceNotificationChildId)
+				.withDeviceNotificationDadId(deviceNotificationDadId).build();
 	}
 }
