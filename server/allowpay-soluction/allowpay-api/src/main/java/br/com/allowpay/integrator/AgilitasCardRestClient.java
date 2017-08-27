@@ -20,6 +20,7 @@ import br.com.allowpay.canonical.Extract;
 import br.com.allowpay.integrator.converters.BalanceDtoToBalanceConverter;
 import br.com.allowpay.integrator.converters.ExtractDtoToFullExtractConverter;
 import br.com.allowpay.integrator.dtos.BalanceDto;
+import br.com.allowpay.integrator.dtos.BalanceValueDto;
 import br.com.allowpay.integrator.dtos.ExtractDto;
 
 @Service
@@ -82,6 +83,21 @@ public class AgilitasCardRestClient {
 			});
 
 			return extracts;
+		} catch (HttpClientErrorException e) {
+			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e.getMessage(), e.getCause());
+		}
+	}
+	
+	public void recharge(final String cardId, final Double value){
+		try {
+			final BalanceValueDto balanceValueDto = new BalanceValueDto(value);
+			final BalanceDto balanceDto = new BalanceDto(cardId, balanceValueDto);
+			
+			final HttpEntity<BalanceDto> httpEntity = new HttpEntity<BalanceDto>(balanceDto, agilitasRestClient.getHeaders());
+			agilitasRestClient.getRestTemplate().exchange(
+					getUrl(cardId, RESOURCE_BALANCE, paramsGetExtractCurrentMonth), HttpMethod.PUT, httpEntity, BalanceDto.class);
+			//TODO: Validar retorno da api agilitas
 		} catch (HttpClientErrorException e) {
 			LOGGER.error(e.getMessage());
 			throw new RuntimeException(e.getMessage(), e.getCause());

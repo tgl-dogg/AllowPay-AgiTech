@@ -12,13 +12,13 @@ public class ExtractValuesDto implements Serializable {
 
 	private String tipo;
 
-	private Integer valor;
+	private Double valor;
 
 	public ExtractValuesDto() {
 
 	}
 
-	public ExtractValuesDto(final String date, final String merchant, final String type, final Integer value) {
+	public ExtractValuesDto(final String date, final String merchant, final String type, final Double value) {
 		super();
 		this.dataHora = date;
 		this.estabelecimento = merchant;
@@ -50,11 +50,11 @@ public class ExtractValuesDto implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Integer getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(Integer valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 

@@ -11,7 +11,7 @@ public class ExtractToFullExtractDtoConverter {
 
 	public FullExtractDto convert(final Extract extract) {
 		final String cardId = null;
-		final Integer value = extract.getAmount();
+		final Integer value = extract.getAmount().intValue() * 100;
 		final String date = extract.getDate();
 		final String merchant = extract.getMerchant();
 		final String type = extract.getType();

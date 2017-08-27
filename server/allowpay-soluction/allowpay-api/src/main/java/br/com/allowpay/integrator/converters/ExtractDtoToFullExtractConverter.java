@@ -10,7 +10,7 @@ import br.com.allowpay.integrator.dtos.ExtractValuesDto;
 public class ExtractDtoToFullExtractConverter {
 	
 	public Extract convert(final ExtractValuesDto extractDto){
-		final Integer value = extractDto.getValor();
+		final Double value = extractDto.getValor();
 		final String date = extractDto.getDataHora();
 		final String merchant = extractDto.getEstabelecimento();
 		final String type = extractDto.getTipo();

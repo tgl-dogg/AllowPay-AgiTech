@@ -6,21 +6,21 @@ public class BalanceValueDto implements Serializable {
 
 	private static final long serialVersionUID = -4607441772675019090L;
 
-	private Integer valor;
+	private Double valor;
 
 	public BalanceValueDto() {
 	}
 
-	public BalanceValueDto(Integer valor) {
+	public BalanceValueDto(Double valor) {
 		super();
 		this.valor = valor;
 	}
 
-	public Integer getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(Integer valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 

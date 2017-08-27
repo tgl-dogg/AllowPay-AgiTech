@@ -1,5 +1,6 @@
 package br.com.allowpay.integrator;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 class AgilitasRestClient {
+	
+	private static final String MEDIA_TYPE_NAME = "Content-Type";
+	
+	private static final String MEDIA_TYPE_VALUE = "application/json";
+	
 
 	@Value("${api.agilitas.url.path}")
 	private String apiPathUrl;
@@ -31,6 +36,7 @@ class AgilitasRestClient {
 
 	protected MultiValueMap<String, String> getHeaders() {
 		final MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+		multiValueMap.put(MEDIA_TYPE_NAME, Arrays.asList(MEDIA_TYPE_VALUE));
 		headers.entrySet().forEach((entry) -> {
 			multiValueMap.add(entry.getKey(), entry.getValue());
 		});

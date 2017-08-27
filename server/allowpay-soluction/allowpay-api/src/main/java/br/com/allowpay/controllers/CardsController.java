@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.allowpay.canonical.Balance;
@@ -73,9 +74,9 @@ public class CardsController {
 	}
 	
 	@PostMapping("/{cardId}/payment")
-	ResponseEntity<Void> setPayment(@PathVariable("cardId") String cardId){
-		//TODO: Realizar o pagamento
-		
+	ResponseEntity<Void> setPayment(@PathVariable("cardId") String cardId, @RequestParam("amount") Integer amount){
+		agilitasCardRestClient.recharge(cardId, Double.valueOf(amount / 100));
+		//TODO: Definir url de chamada para verificação do pagamento
 		return ResponseEntity.created(URI.create("http://allowpay.me")).build();
 	}
 	
