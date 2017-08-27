@@ -1,72 +1,36 @@
 package br.com.allowpay.integrator.dtos;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExtractDto implements Serializable {
 
-	private static final long serialVersionUID = -1612853904431913398L;
+	private static final long serialVersionUID = -3631697842455852779L;
 
-	private Date date;
-
-	private String merchant;
-
-	private String type;
-
-	private Double value;
+	private List<ExtractValuesDto> extrato = new ArrayList<>();
 
 	public ExtractDto() {
-
 	}
 
-	public ExtractDto(final Date date, final String merchant, final String type, final Double value) {
+	public ExtractDto(List<ExtractValuesDto> extrato) {
 		super();
-		this.date = date;
-		this.merchant = merchant;
-		this.type = type;
-		this.value = value;
+		this.extrato = extrato;
 	}
 
-	public Date getDate() {
-		return date;
+	public List<ExtractValuesDto> getExtrato() {
+		return extrato;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getMerchant() {
-		return merchant;
-	}
-
-	public void setMerchant(String merchant) {
-		this.merchant = merchant;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public Double getValue() {
-		return value;
-	}
-
-	public void setValue(Double value) {
-		this.value = value;
+	public void setExtrato(List<ExtractValuesDto> extrato) {
+		this.extrato = extrato;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((merchant == null) ? 0 : merchant.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		result = prime * result + ((extrato == null) ? 0 : extrato.hashCode());
 		return result;
 	}
 
@@ -79,27 +43,11 @@ public class ExtractDto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ExtractDto other = (ExtractDto) obj;
-		if (date == null) {
-			if (other.date != null)
+		if (extrato == null) {
+			if (other.extrato != null)
 				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (merchant == null) {
-			if (other.merchant != null)
-				return false;
-		} else if (!merchant.equals(other.merchant))
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
+		} else if (!extrato.equals(other.extrato))
 			return false;
 		return true;
 	}
-
 }

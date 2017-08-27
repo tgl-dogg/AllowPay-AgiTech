@@ -45,20 +45,4 @@ class AgilitasRestClient {
 		builder.append(resource);
 		return builder.toString();
 	}
-
-	protected String getUrlWithParams(final String resource, final Map<String, Object> params) {
-		final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(getUrl(resource));
-		params.entrySet().forEach(entry -> addParam(uriComponentsBuilder, entry.getKey(), entry.getValue()));
-
-		return uriComponentsBuilder.build().encode().toUriString();
-	}
-
-	private void addParam(final UriComponentsBuilder uriComponentsBuilder, final String name, final Object value) {
-		if (value == null) {
-			return;
-		}
-
-		uriComponentsBuilder.queryParam(name, value);
-	}
-
 }

@@ -3,12 +3,12 @@ package br.com.allowpay.converters;
 import org.springframework.stereotype.Component;
 
 import br.com.allowpay.canonical.Register;
-import br.com.allowpay.dtos.Card;
+import br.com.allowpay.dtos.CardDto;
 
 @Component
 public class CardToRegisterConverter {
 
-	public Register convert(final Card card) {
+	public Register convert(final CardDto card) {
 		final String id = card.getId();
 
 		//TODO: Preencher

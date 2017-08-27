@@ -1,24 +1,18 @@
 package br.com.allowpay.converters;
 
-import java.math.BigDecimal;
-
 import org.springframework.stereotype.Component;
 
 import br.com.allowpay.canonical.Balance;
-import br.com.allowpay.dtos.Extract;
+import br.com.allowpay.dtos.ExtractDto;
 
 @Component
 public class BalanceToExtractConverter {
 
-	public Extract convert(final Balance balance) {
+	public ExtractDto convert(final Balance balance) {
 		final String cardId = balance.getCardId();
-		final Integer value = getBalance(balance.getValue());
+		final Integer value = balance.getValue().intValue();
 
-		final Extract extract = new Extract(cardId, value);
+		final ExtractDto extract = new ExtractDto(cardId, value);
 		return extract;
-	}
-
-	private Integer getBalance(final BigDecimal value) {
-		return value.toBigInteger().intValue();
-	}
+	}	
 }
