@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import me.allowpay.allowpayteen.activities.ExtractActivity;
 import me.allowpay.allowpayteen.pojos.Extract;
@@ -19,9 +24,9 @@ import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
 /**
  * Created by Pitstop on 26/08/2017.
  */
-public class ExtractAsyncTask extends AsyncTask<String, Void, Extract> {
+public class ExtractAsyncTask extends AsyncTask<String, Void, ArrayList<Extract>> {
 
-    private static final String endpoint = HttpUtils.URL + "extract/";
+    private static final String endpoint = "/extract";
 
     private Context mContext;
 
@@ -40,21 +45,25 @@ public class ExtractAsyncTask extends AsyncTask<String, Void, Extract> {
     }
 
     @Override
-    protected Extract doInBackground(String... params) {
-        String url = endpoint + params[0];
+    protected ArrayList<Extract> doInBackground(String... params) {
+        String url = HttpUtils.URL + "cards/" + params[0] + endpoint;
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         HttpEntity entity = new HttpEntity(HttpUtils.getDefaultHttpHeaders());
 
-        ResponseEntity<Extract> response = restTemplate.exchange(url, HttpMethod.GET, entity, Extract.class);
+        ResponseEntity<ArrayList<Extract>> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+                new ParameterizedTypeReference<ArrayList<Extract>>() {
+                    // vários nadas.
+                });
 
-        Extract extract = response.getBody();
-        return extract;
+        ArrayList<Extract> extracts = response.getBody();
+        return extracts;
     }
 
     @Override
-    protected void onPostExecute(Extract extract) {
-        Intent intent = new Intent(mContext, ExtractActivity.class);
-        intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_EXTRACT, extract);
+    protected void onPostExecute(ArrayList<Extract> extracts) {
+        Intent intent = new Intent(LocalBroadcastUtils.ACTION_REQUEST_AP_EXTRACT);
+        intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_EXTRACT, extracts);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
         if (mProgressDialog.isShowing()) {

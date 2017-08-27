@@ -9,6 +9,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import me.allowpay.allowpayteen.activities.ExtractActivity;
@@ -21,7 +22,7 @@ import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
  */
 public class BonusAsyncTask extends AsyncTask<String, Void, Bonus> {
 
-    private static final String endpoint = HttpUtils.URL + "bonus/";
+    private static final String endpoint = "/bonus";
 
     private Context mContext;
 
@@ -41,8 +42,9 @@ public class BonusAsyncTask extends AsyncTask<String, Void, Bonus> {
 
     @Override
     protected Bonus doInBackground(String... params) {
-        String url = endpoint + params[0];
+        String url = HttpUtils.URL + "cards/" + params[0] + endpoint;
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         HttpEntity entity = new HttpEntity(HttpUtils.getDefaultHttpHeaders());
 
         ResponseEntity<Bonus> response = restTemplate.exchange(url, HttpMethod.GET, entity, Bonus.class);
@@ -53,7 +55,7 @@ public class BonusAsyncTask extends AsyncTask<String, Void, Bonus> {
 
     @Override
     protected void onPostExecute(Bonus bonus) {
-        Intent intent = new Intent(mContext, ExtractActivity.class);
+        Intent intent = new Intent(LocalBroadcastUtils.ACTION_REQUEST_AP_BONUS);
         intent.putExtra(LocalBroadcastUtils.ACTION_REQUEST_AP_BONUS, bonus);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 

@@ -7,17 +7,22 @@ import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import me.allowpay.allowpayteen.R;
 import me.allowpay.allowpayteen.pojos.Balance;
 import me.allowpay.allowpayteen.pojos.Bonus;
 import me.allowpay.allowpayteen.pojos.Extract;
+import me.allowpay.allowpayteen.tasks.BalanceAsyncTask;
+import me.allowpay.allowpayteen.tasks.BonusAsyncTask;
+import me.allowpay.allowpayteen.tasks.ExtractAsyncTask;
 import me.allowpay.allowpayteen.utils.LocalBroadcastUtils;
 
 public class ExtractActivity extends AppCompatActivity {
@@ -32,6 +37,14 @@ public class ExtractActivity extends AppCompatActivity {
 
         instanceViews();
         registerBroadcasts();
+        startRequests();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
 
     private void instanceViews() {
@@ -54,26 +67,37 @@ public class ExtractActivity extends AppCompatActivity {
         localBroadcastManager.registerReceiver(mMessageReceiver, intentFilter);
     }
 
+    private void startRequests() {
+        new BalanceAsyncTask(this).execute("000001");
+        new BonusAsyncTask(this).execute("000001");
+        new ExtractAsyncTask(this).execute("000001");
+    }
+
     private void updateBalance(Balance balance) {
-        mTextViewBalance.setText("");
+        String balanceFormatted = String.format(Locale.ROOT, "R$: %.2f", balance.getValue() / 100f);
+        mTextViewBalance.setText(balanceFormatted.replace('.', ','));
     }
 
     private void updateBonus(Bonus bonus) {
-        mTextViewBonus.setText("");
+        mTextViewBonus.setText(bonus.getValue().toString());
     }
 
-    private void updateExtract(Extract extract) {
+    private void updateExtract(ArrayList<Extract> extracts) {
         List<String> array = new ArrayList<>();
-        array.add("alêEnígena");
-        array.add("SAbreu");
-        array.add("sCobar");
-        array.add("rCabrals");
-        array.add("tglDogg");
+        for (Extract extract : extracts) {
+            String s = String.format(Locale.ROOT, "%s - R$: %.2f", extract.getMerchant(), extract.getValue() / 100f);
+            array.add(s);
+        }
+//        array.add("alêEnígena");
+//        array.add("SAbreu");
+//        array.add("sCobar");
+//        array.add("rCabrals");
+//        array.add("tglDogg");
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                array );
+                array);
 
         mListView.setAdapter(arrayAdapter);
     }
@@ -82,6 +106,7 @@ public class ExtractActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            Log.i("action", action);
 
             switch (action) {
                 case LocalBroadcastUtils.ACTION_REQUEST_AP_BALANCE:
@@ -95,8 +120,8 @@ public class ExtractActivity extends AppCompatActivity {
                     break;
 
                 case LocalBroadcastUtils.ACTION_REQUEST_AP_EXTRACT:
-                    Extract extract = (Extract) intent.getSerializableExtra(action);
-                    updateExtract(extract);
+                    ArrayList<Extract> extracts = (ArrayList<Extract>) intent.getSerializableExtra(action);
+                    updateExtract(extracts);
                     break;
             }
         }

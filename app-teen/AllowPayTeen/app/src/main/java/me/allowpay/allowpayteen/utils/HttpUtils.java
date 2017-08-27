@@ -14,7 +14,7 @@ import java.net.URL;
  */
 public class HttpUtils {
 
-    public static final String URL = "http://111.222.333.444:8080/allowpay/";
+    public static final String URL = "http://172.13.0.84:8080/v1/";
 
     private static final String POST = "POST";
     private static final String GET = "GET";
