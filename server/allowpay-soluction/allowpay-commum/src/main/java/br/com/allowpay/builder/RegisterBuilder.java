@@ -27,24 +27,29 @@ public class RegisterBuilder {
 		return this;
 	}
 
-	public void withBalanceValue(final BigDecimal balanceValue) {
+	public RegisterBuilder withBalanceValue(final BigDecimal balanceValue) {
 		this.balanceValue = balanceValue;
+		return this;
 	}
 
-	public void withDeviceNotificationDadId(final String deviceNotificationDadId) {
+	public RegisterBuilder withDeviceNotificationDadId(final String deviceNotificationDadId) {
 		this.deviceNotificationDadId = deviceNotificationDadId;
+		return this;
 	}
 
-	public void withDeviceNotificationChildId(final String deviceNotificationChildId) {
+	public RegisterBuilder withDeviceNotificationChildId(final String deviceNotificationChildId) {
 		this.deviceNotificationChildId = deviceNotificationChildId;
+		return this;
 	}
 
-	public void withClientChild(final ClientChild clientChild) {
+	public RegisterBuilder withClientChild(final ClientChild clientChild) {
 		this.clientChild = clientChild;
+		return this;
 	}
 
-	public void withOthersChilds(final List<ClientChild> othersChilds) {
+	public RegisterBuilder withOthersChilds(final List<ClientChild> othersChilds) {
 		this.othersChilds = othersChilds;
+		return this;
 	}
 
 	public Register build() {

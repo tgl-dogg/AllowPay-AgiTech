@@ -6,35 +6,37 @@ import java.util.List;
 import br.com.allowpay.canonical.ClientChild;
 import br.com.allowpay.canonical.ClientDad;
 
-public class ClientDadBuild {
+public class ClientDadBuilder {
 
-	public static ClientDadBuild create() {
-		return new ClientDadBuild();
+	public static ClientDadBuilder create() {
+		return new ClientDadBuilder();
 	}
 
-	private ClientDadBuild() {}
+	private ClientDadBuilder() {}
 
 	private String cpf;
 	private String name;
 	private Date createDate;
 	private List<ClientChild> clientChilds;
 
-	public ClientDadBuild withCPF(final String cpf) {
+	public ClientDadBuilder withCPF(final String cpf) {
 		this.cpf = cpf;
 		return this;
 	}
 
-	public ClientDadBuild withName(final String name) {
+	public ClientDadBuilder withName(final String name) {
 		this.name = name;
 		return this;
 	}
 	
-	public void withCreateDate(final Date createDate) {
+	public ClientDadBuilder withCreateDate(final Date createDate) {
 		this.createDate = createDate;
+		return this;
 	}
 
-	public void withClientChilds(final List<ClientChild> clientChilds) {
+	public ClientDadBuilder withClientChilds(final List<ClientChild> clientChilds) {
 		this.clientChilds = clientChilds;
+		return this;
 	}
 
 	public ClientDad build() {
