@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AllowPayDad</string>
+    <string name="title_activity_teen_card_listing">TeenCardListingActivity</string>
+    <string name="title_activity_checkout">CheckoutActivity</string>
+</resources>
