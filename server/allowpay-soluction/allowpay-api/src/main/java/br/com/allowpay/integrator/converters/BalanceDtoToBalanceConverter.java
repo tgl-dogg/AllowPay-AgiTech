@@ -17,5 +17,4 @@ public class BalanceDtoToBalanceConverter {
 
 		return BalanceBuilder.create().withCardId(cardId).withValue(value).build();
 	}
-
 }

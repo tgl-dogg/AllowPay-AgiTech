@@ -2,7 +2,7 @@ package br.com.allowpay.dtos;
 
 import java.io.Serializable;
 
-public class Extract implements Serializable {
+public class ExtractDto implements Serializable {
 
 	private static final long serialVersionUID = -8121009751711670670L;
 
@@ -10,10 +10,10 @@ public class Extract implements Serializable {
 
 	private Integer value;
 
-	public Extract() {
+	public ExtractDto() {
 	}
 
-	public Extract(final String cardId, final Integer value) {
+	public ExtractDto(final String cardId, final Integer value) {
 		super();
 		this.cardId = cardId;
 		this.value = value;
@@ -52,7 +52,7 @@ public class Extract implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Extract other = (Extract) obj;
+		ExtractDto other = (ExtractDto) obj;
 		if (cardId == null) {
 			if (other.cardId != null)
 				return false;

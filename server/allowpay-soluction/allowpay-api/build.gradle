@@ -39,5 +39,7 @@ dependencies {
 	
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
 	
+	compile group: 'com.hazelcast', name: 'hazelcast', version: '3.8.4'
+	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -1,6 +1,6 @@
 package br.com.allowpay.dtos;
 
-public class FullExtract extends Extract {
+public class FullExtractDto extends ExtractDto {
 
 	private static final long serialVersionUID = -2351200876485273954L;
 
@@ -10,14 +10,14 @@ public class FullExtract extends Extract {
 
 	private String type;
 
-	private Coordinate coordinate;
+	private CoordinateDto coordinate;
 
-	public FullExtract() {
+	public FullExtractDto() {
 		super();
 	}
 
-	public FullExtract(final String cardId, final Integer value, final String date, final String merchant,
-			final String type, final Coordinate coordinate) {
+	public FullExtractDto(final String cardId, final Integer value, final String date, final String merchant,
+			final String type, final CoordinateDto coordinate) {
 		super(cardId, value);
 		this.date = date;
 		this.merchant = merchant;
@@ -49,11 +49,11 @@ public class FullExtract extends Extract {
 		this.type = type;
 	}
 
-	public Coordinate getCoordinate() {
+	public CoordinateDto getCoordinate() {
 		return coordinate;
 	}
 
-	public void setCoordinate(Coordinate coordinate) {
+	public void setCoordinate(CoordinateDto coordinate) {
 		this.coordinate = coordinate;
 	}
 

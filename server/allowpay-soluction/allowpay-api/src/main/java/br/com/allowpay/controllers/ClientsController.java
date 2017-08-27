@@ -14,7 +14,6 @@ import br.com.allowpay.dtos.ClientDto;
 @RequestMapping("${api.version}/clients")
 public class ClientsController {
 
-	// TODO: Definir o request
 	@PostMapping
 	ResponseEntity<Void> setClient(@RequestBody final ClientDto client) {
 		// TODO: Registra o cliente

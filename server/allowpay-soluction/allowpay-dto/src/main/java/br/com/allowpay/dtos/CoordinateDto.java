@@ -2,7 +2,7 @@ package br.com.allowpay.dtos;
 
 import java.io.Serializable;
 
-public class Coordinate implements Serializable {
+public class CoordinateDto implements Serializable {
 
 	private static final long serialVersionUID = -8261782328851906171L;
 
@@ -10,10 +10,10 @@ public class Coordinate implements Serializable {
 
 	private Double width;
 
-	public Coordinate() {
+	public CoordinateDto() {
 	}
 
-	public Coordinate(final Double height, final Double width) {
+	public CoordinateDto(final Double height, final Double width) {
 		super();
 		this.height = height;
 		this.width = width;
@@ -52,7 +52,7 @@ public class Coordinate implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Coordinate other = (Coordinate) obj;
+		CoordinateDto other = (CoordinateDto) obj;
 		if (height == null) {
 			if (other.height != null)
 				return false;

@@ -2,18 +2,18 @@ package br.com.allowpay.dtos;
 
 import java.util.Collection;
 
-public class ClientDad extends Client {
+public class ClientDadDto extends ClientDto {
 
 	private static final long serialVersionUID = 3262750019261577576L;
 
 	private String cpf;
 
-	public ClientDad() {
+	public ClientDadDto() {
 		super();
 	}
 
-	public ClientDad(final String cpf, final String name, final Collection<Card> cards) {
-		super(name, cards);
+	public ClientDadDto(final String cpf, final String name, final String deviceId, final Collection<CardDto> cards) {
+		super(name, cards, deviceId);
 		this.cpf = cpf;
 	}
 
@@ -37,7 +37,7 @@ public class ClientDad extends Client {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClientDad other = (ClientDad) obj;
+		ClientDadDto other = (ClientDadDto) obj;
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;

@@ -1,6 +1,7 @@
 package br.com.allowpay.builder;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import br.com.allowpay.canonical.Balance;
 

@@ -1,22 +1,20 @@
 package br.com.allowpay.canonical;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 
 public class Extract implements Serializable{
 
 	private static final long serialVersionUID = 8976751451563561280L;
 
-	private final Date date;
+	private final String date;
 
 	private final String merchant;
 
 	private final String type;
 
-	private final BigDecimal amount;
+	private final Double amount;
 
-	public Extract(final Date date, final String merchant, final String type, final BigDecimal amount) {
+	public Extract(final String date, final String merchant, final String type, final Double amount) {
 		super();
 		this.date = date;
 		this.merchant = merchant;
@@ -24,7 +22,7 @@ public class Extract implements Serializable{
 		this.amount = amount;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
@@ -36,7 +34,7 @@ public class Extract implements Serializable{
 		return type;
 	}
 
-	public BigDecimal getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 

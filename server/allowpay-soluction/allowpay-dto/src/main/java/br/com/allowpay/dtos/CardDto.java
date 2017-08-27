@@ -2,17 +2,17 @@ package br.com.allowpay.dtos;
 
 import java.io.Serializable;
 
-public class Card implements Serializable {
+public class CardDto implements Serializable {
 
 	private static final long serialVersionUID = -6033980208070633582L;
 
 	private String id;
 
-	public Card() {
+	public CardDto() {
 		super();
 	}
 
-	public Card(String id) {
+	public CardDto(String id) {
 		super();
 		this.id = id;
 	}
@@ -41,7 +41,7 @@ public class Card implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Card other = (Card) obj;
+		CardDto other = (CardDto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

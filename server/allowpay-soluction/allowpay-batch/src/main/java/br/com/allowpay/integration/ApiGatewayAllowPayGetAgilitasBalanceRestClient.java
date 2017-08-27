@@ -30,7 +30,7 @@ public class ApiGatewayAllowPayGetAgilitasBalanceRestClient implements AllowPayA
 				uriVariables);
 
 		if (responseEntityBalance.getStatusCode().is2xxSuccessful()) {
-			return responseEntityBalance.getBody().getAmount();
+			return BigDecimal.valueOf(responseEntityBalance.getBody().getAmount());
 		} else {
 			throw new IntegrationFailException(path.replace("{cardId}", cardId), "GET",
 					responseEntityBalance.getStatusCode());

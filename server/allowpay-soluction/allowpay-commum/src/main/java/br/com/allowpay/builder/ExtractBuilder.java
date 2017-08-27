@@ -1,8 +1,5 @@
 package br.com.allowpay.builder;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import br.com.allowpay.canonical.Extract;
 
 public class ExtractBuilder {
@@ -13,15 +10,15 @@ public class ExtractBuilder {
 
 	private ExtractBuilder() {}
 
-	private Date date;
+	private String date;
 
 	private String merchant;
 
 	private String type;
 
-	private BigDecimal amount;
+	private Double amount;
 
-	public ExtractBuilder withDate(final Date date) {
+	public ExtractBuilder withDate(final String date) {
 		this.date = date;
 		return this;
 	}
@@ -36,7 +33,7 @@ public class ExtractBuilder {
 		return this;
 	}
 
-	public ExtractBuilder withAmount(final BigDecimal amount) {
+	public ExtractBuilder withAmount(final Double amount) {
 		this.amount = amount;
 		return this;
 	}

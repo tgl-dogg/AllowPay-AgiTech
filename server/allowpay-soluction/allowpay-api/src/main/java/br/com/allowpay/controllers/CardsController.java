@@ -31,7 +31,6 @@ public class CardsController {
 	//@Bean(name = "dadNotificationTopic")
 	//@Bean(name = "childNotificationTopic")
 	
-	//BalanceNotificationEventListener, ouvir e notificar os aplicativos...
 	
 	
 	@Autowired
@@ -46,7 +45,6 @@ public class CardsController {
 	@GetMapping("/{cardId}/bonus")
 	ResponseEntity<ExtractDto> getBonus(@PathVariable("cardId") String cardId){
 		//TODO: Recuperar informações de bônus do cliente informado.
-
 		final ExtractDto extractBonus = getMockExtract(cardId);
 		return ResponseEntity.ok(extractBonus);
 	}
