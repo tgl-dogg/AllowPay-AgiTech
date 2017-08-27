@@ -11,6 +11,7 @@ public class CardToRegisterConverter {
 	public Register convert(final Card card) {
 		final String id = card.getId();
 
+		//TODO: Preencher
 		final Register register = new Register(id, null, null, null, null, null);
 		return register;
 	}

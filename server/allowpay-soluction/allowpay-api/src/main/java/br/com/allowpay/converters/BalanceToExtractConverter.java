@@ -19,6 +19,6 @@ public class BalanceToExtractConverter {
 	}
 
 	private Integer getBalance(final BigDecimal value) {
-		return value.toBigInteger().intValue() * 100;
+		return value.toBigInteger().intValue();
 	}
 }

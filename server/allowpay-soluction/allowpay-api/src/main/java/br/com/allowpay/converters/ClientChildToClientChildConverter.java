@@ -22,6 +22,7 @@ public class ClientChildToClientChildConverter {
 			registers.add(cardToRegisterConverter.convert(card));
 		});
 
+		//TODO: Preencher
 		final ClientChild clientChild = new ClientChild(name, null, registers, null);
 		return clientChild;
 	}

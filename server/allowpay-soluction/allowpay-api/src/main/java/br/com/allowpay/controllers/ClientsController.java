@@ -18,6 +18,8 @@ public class ClientsController {
 	@PostMapping
 	ResponseEntity<Void> setClient(@RequestBody final Client client) {
 		// TODO: Registra o cliente
+		
+		//FIXME: Ativação não é realizada na agilitas neste momento
 		return ResponseEntity.created(URI.create("http://allowpay.me")).build();
 	}
 
